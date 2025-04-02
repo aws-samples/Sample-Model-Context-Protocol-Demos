@@ -47,16 +47,14 @@ flowchart LR
 
 ## Run Locally
 
-[Install Gradle](https://gradle.org/install/)
-
 Start the MCP Server:
 ```
-gradle :server:bootRun
+./mvnw -pl server spring-boot:run
 ```
 
 Start the MCP Client / Agent:
 ```
-gradle :client:bootRun
+./mvnw -pl client spring-boot:run
 ```
 
 Make a request to the server REST endpoint:
@@ -81,13 +79,10 @@ Build and push the MCP Server & MCP Client to ECR:
 ```
 export ECR_REPO=<your account id>.dkr.ecr.us-east-1.amazonaws.com
 
-./gradlew :server:bootBuildImage --imageName=$ECR_REPO/mcp-agent-spring-ai-server
-
+./mvnw -pl server spring-boot:build-image -Dspring-boot.build-image.imageName=$ECR_REPO/mcp-agent-spring-ai-server
 docker push $ECR_REPO/mcp-agent-spring-ai-server:latest
 
-
-./gradlew :client:bootBuildImage --imageName=$ECR_REPO/mcp-agent-spring-ai-client
-
+./mvnw -pl client spring-boot:build-image -Dspring-boot.build-image.imageName=$ECR_REPO/mcp-agent-spring-ai-client
 docker push $ECR_REPO/mcp-agent-spring-ai-client:latest
 ```
 

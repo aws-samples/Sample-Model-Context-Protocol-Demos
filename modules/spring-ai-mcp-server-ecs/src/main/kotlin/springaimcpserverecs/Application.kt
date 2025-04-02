@@ -1,4 +1,4 @@
-package com.jamesward.hellospringmcpserver
+package springaimcpserverecs
 
 import org.springframework.ai.tool.annotation.Tool
 import org.springframework.ai.tool.annotation.ToolParam

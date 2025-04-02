@@ -2,10 +2,9 @@
 
 ## Run Locally
 
-1. [Install Gradle](https://gradle.org/install/)
 1. Run the application:
     ```
-    gradle bootRun
+    ./mvnw spring-boot:run
     ```
 
 ## Deploy on ECS
@@ -18,7 +17,7 @@ Prereqs:
 ```
 export ECR_REPO=<your account id>.dkr.ecr.us-east-1.amazonaws.com/<your repo path>
 
-gradle bootBuildImage --imageName=$ECR_REPO
+./mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=$ECR_REPO
 
 docker push $ECR_REPO:latest
 
